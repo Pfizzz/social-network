@@ -14,7 +14,7 @@ app.use(require('./routes'));
 // app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
 
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-network', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/social-network2', {
   useFindAndModify: false,
   useNewUrlParser: true,
   useUnifiedTopology: true
