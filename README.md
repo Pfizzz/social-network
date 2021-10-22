@@ -3,7 +3,7 @@
 ![image](https://github.com/Pfizzz/social-network/blob/870b6362b9cee4a17d477dc1b2817422435fd985/images/ss1.png)
 
 ## Description
-This app uses a NoSQL database built using MongoDB and that lays the foundation for a social networking platform. The app allows for users to add each other as friends and comment on each other's thoughts using Express js and Mongoose to structure the schema for the User and Thought models. 
+This app uses a NoSQL database built using MongoDB and that lays the foundation for a social networking platform. The app allows for users to add each other as friends and comment on each other's thoughts using Express js routing, a Node js runtime, and Mongoose to structure the schema for the User and Thought models. 
 
 ## Demo Video
 [Click here to be redirected to Youtube](https://www.youtube.com/watch?v=AD9H2H08f_s)
