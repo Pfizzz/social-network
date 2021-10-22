@@ -22,16 +22,30 @@ const UserSchema = new Schema({
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'A valid email address is required!']
     },
 
-        //Array of _id values referencing the Thought model
-    
 
-        // Array of _id values referencing the User model (self-reference)
-    
+    friends: [],
+        //Array of _id values referencing the Thought model
+    thoughts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Thought'
+        }
+    ],
+        // Array of _id values referencing the User model (self-reference)  
+},
+{
+    toJSON: {
+      virtuals: true,
+    },
+    id: false
 })
 
 // Schema Settings
 
 // Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
+UserSchema.virtual('friendCount').get(function() {
+    return this.friends.length;
+  });
 
 const User = model('User', UserSchema);
 
