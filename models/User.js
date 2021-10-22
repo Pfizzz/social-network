@@ -23,7 +23,7 @@ const UserSchema = new Schema({
     },
 
 
-    friends: [],
+
         //Array of _id values referencing the Thought model
     thoughts: [
         {
@@ -31,7 +31,11 @@ const UserSchema = new Schema({
             ref: 'Thought'
         }
     ],
-        // Array of _id values referencing the User model (self-reference)  
+    friends: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+
 },
 {
     toJSON: {

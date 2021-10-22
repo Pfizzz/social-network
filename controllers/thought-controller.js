@@ -12,7 +12,7 @@ const thoughtController = {
 
     // get single thought by id
     getThoughtById({ params }, res) {
-        Thought.findOne({ _id: params.id })
+        Thought.findOne({ _id: params.thoughtId })
             .then(dbThoughtData => {
                 if (!dbThoughtData) {
                     res.status(404).json({ message: 'No thought found with this id!' });
@@ -68,7 +68,8 @@ const thoughtController = {
                     return res.status(404).json({ message: 'No thought with this id!' });
                 }
                 return User.findOneAndUpdate(
-                    { username: deletedThought.username },
+                    { _id: params.id },
+
                     { $pull: { thoughts: params.id } },
                     { new: true }
                 );
