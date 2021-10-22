@@ -10,7 +10,7 @@ const thoughtController = {
             })
     },
 
-    // get single thought by id
+    // get single thought by id THIS WORKS DONT TOUCH
     getThoughtById({ params }, res) {
         Thought.findOne({ _id: params.thoughtId })
             .then(dbThoughtData => {
@@ -26,7 +26,7 @@ const thoughtController = {
             });
     },
 
-    // add thought to user
+    // add thought to user WORKS DONT TOUCH
     createThought({ params, body }, res) {
         console.log(body);
         Thought.create(body)
@@ -49,7 +49,7 @@ const thoughtController = {
 
     // updateThought({ })
     updateThought({ params, body }, res) {
-        Thought.findOneAndUpdate({ _id: params.id }, body, { new: true})
+        Thought.findOneAndUpdate({ _id: params.thoughtId }, body, { new: true})
         .then(dbThoughtData => {
             if (!dbThoughtData) {
               res.status(404).json({ message: 'no thought found with this id!' });
@@ -60,17 +60,17 @@ const thoughtController = {
           .catch(err => res.status(400).json(err));
     },
 
-
+  // THIS WORKS DONT TOUCH
     deleteThought({ params }, res) {
-        Thought.findOneAndDelete({ _id: params.id })
+        Thought.findOneAndDelete({ _id: params.thoughtId })
             .then(deletedThought => {
                 if (!deletedThought) {
                     return res.status(404).json({ message: 'No thought with this id!' });
                 }
                 return User.findOneAndUpdate(
-                    { _id: params.id },
+                    { _id: params.userId },
 
-                    { $pull: { thoughts: params.id } },
+                    { $pull: { thoughts: params.thoughtId } },
                     { new: true }
                 );
             })
