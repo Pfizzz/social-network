@@ -11,6 +11,15 @@ After cloning the repo, run "npm i" to install the dependencies. Then, in Insomn
 ## Tests
 This is a RESTful API optimized to be tested in Insomnia.
 
+There are 14 routes ready to go for this API: 
+
+* Create, read, update, and delete single users.
+* Read all users.
+* Create, read, update, and delete user's thoughts (posts).
+* Read a single thought.
+* Create and delete user's friend's.
+* Create and delete thought's reactions (comments).
+
 
 ## Questions
 ### Github Profile: 
