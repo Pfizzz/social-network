@@ -1,12 +1,12 @@
 const { User } = require('../models');
 
 const userController = {
-    // functions go in here as methods
     // get all users
     getAllUser(req, res) {
         User.find({})
             .populate({
                 path: 'thoughts',
+                path: 'friends',
                 select: '-__v'
             })
             .select('-__v')
@@ -70,6 +70,45 @@ const userController = {
                 res.json(dbUserData);
             })
             .catch(err => res.status(400).json(err));
+    },
+
+    // friend logic
+    createFriend({ params }, res) {
+        User.findOneAndUpdate(
+            { _id: params.userId },
+            { $push: { friends: params.friendId } },
+            { new: true }
+        )
+        .then(dbUserData => {
+            if (!dbUserData) {
+              res.status(404).json({ message: 'No thought found with this id!' });
+              return;
+            }
+            res.json(dbUserData);
+          })
+          .catch(err => res.json(err));
+    },
+
+    removeFriend({ params }, res) {
+        User.findOneAndUpdate(
+            { _id: params.userId },
+            { $pull: { friends: params.friendId } },
+            { new: true }
+        )
+        .then((dbUserData) => {
+            if (!dbUserData) {
+              res.status(404).json({ message: "No friend found with that id!" });
+              return;
+            }
+            res.json({
+dbUserData,
+              message: "Deleted Friend",
+            });
+          })
+            .catch((err) => {
+            console.log(err)
+            res.status(400).json(err)
+          })
     }
 }
 

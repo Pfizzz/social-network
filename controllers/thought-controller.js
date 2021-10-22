@@ -27,7 +27,7 @@ const thoughtController = {
             });
     },
 
-    // add thought to user WORKS DONT TOUCH
+    // add thought to user 
     createThought({ params, body }, res) {
         console.log(body);
         Thought.create(body)
@@ -76,7 +76,7 @@ const thoughtController = {
         .catch(err => res.json(err));
     },
 
-    // updateThought({ })
+    // updateThought 
     updateThought({ params, body }, res) {
         Thought.findOneAndUpdate({ _id: params.thoughtId }, body, { new: true})
         .then(dbThoughtData => {
@@ -89,7 +89,7 @@ const thoughtController = {
           .catch(err => res.status(400).json(err));
     },
 
-  // THIS WORKS DONT TOUCH
+  // delete thought
     deleteThought({ params }, res) {
         Thought.findOneAndDelete({ _id: params.thoughtId })
             .then(deletedThought => {

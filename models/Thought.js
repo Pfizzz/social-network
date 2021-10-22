@@ -42,7 +42,6 @@ const ThoughtSchema = new Schema(
             type: Date,
             default: Date.now,
             get: (createdAtVal) => dateFormat(createdAtVal) 
-        // Use a getter method to format the timestamp on query
         },
         username: {
             type: String,
@@ -61,7 +60,6 @@ const ThoughtSchema = new Schema(
 
 // Schema Settings
 
-// Create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
 ThoughtSchema.virtual('reactionCount').get(function() {
     return this.reactions.length;
   });
